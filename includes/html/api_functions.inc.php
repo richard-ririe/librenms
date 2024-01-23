@@ -2202,7 +2202,7 @@ function add_device_group(Illuminate\Http\Request $request)
     $rules = [
         'name' => 'required|string|unique:device_groups',
         'type' => 'required|in:dynamic,static',
-        'devices' => 'array|required_if:type,static',
+        'devices' => 'array|present_if:type,static',
         'devices.*' => 'integer',
         'rules' => 'json|required_if:type,dynamic',
     ];
@@ -2255,7 +2255,7 @@ function update_device_group(Illuminate\Http\Request $request)
         'name' => 'sometimes|string|unique:device_groups',
         'desc' => 'sometimes|string',
         'type' => 'sometimes|in:dynamic,static',
-        'devices' => 'array|required_if:type,static',
+        'devices' => 'array|present_if:type,static',
         'devices.*' => 'integer',
         'rules' => 'json|required_if:type,dynamic',
     ];
